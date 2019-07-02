@@ -1,25 +1,26 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import '../App.css';
+import StrengthQuestion from '../routes/StrengthQuestion';
+import BaseQuestion from '../routes/BaseQuestion';
+import FirstFlavorQuestion from '../routes/FirstFlavorQuestion';
+import SecondFlavorQuestion from '../routes/SecondFlavorQuestion';
+import ResultPage from '../routes/ResultPage';
+import NotFoundPage from '../routes/NotFoundPage';
+import Welcome from '../routes/Welcome'
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      preferrence: {
-        strength: '',
-        base: '',
-        additional_1: '',
-        additional_2: '',
-      },
-      result: ''
-  }
+
+
   render() {
     return (
       <div className="App">
-        <h1>Vkuss </h1>
+        <h1>Vkuss</h1>
         <Switch>
+          <Route
+            exact path={'/'}
+            component={Welcome}
+          />
           <Route
             path={'/strength'}
             component={StrengthQuestion}
