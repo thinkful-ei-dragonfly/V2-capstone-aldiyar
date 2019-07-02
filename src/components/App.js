@@ -9,10 +9,37 @@ import ResultPage from '../routes/ResultPage';
 import NotFoundPage from '../routes/NotFoundPage';
 import Welcome from '../routes/Welcome'
 
-class App extends React.Component {
+export default class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      strength: '',
+      base: '',
+      flavor_1: '',
+      flavor_2: '',
+    }
+  }
+  handleStrengthAssign = (e) => {
+    e.preventDefault();
+    this.setState({
+      strength: e.target.radioGroup.value
+    })
+    
+  }
 
+  handleBaseFlavorAssign = (e) => {
+    e.preventDefault();
+    this.setState({
+      base: e.target.radioGroup.value
+    })
+  }
 
+  componentDidMount() {
+    fetch(`'someURL'/flavors`)
+
+  }
   render() {
+    console.log(this.state)
     return (
       <div className="App">
         <h1>Vkuss</h1>
@@ -23,11 +50,15 @@ class App extends React.Component {
           />
           <Route
             path={'/strength'}
-            component={StrengthQuestion}
+            render = { () => {
+              return <StrengthQuestion strengthAssign={this.handleStrengthAssign} />
+            }}
           />
           <Route 
             path={'/base'}
-            component={BaseQuestion}
+            render = { () => {
+              return <BaseQuestion baseAssign={this.handleBaseFlavorAssign} />
+            }}
           />
           <Route
             path={'/first'}
@@ -52,4 +83,3 @@ class App extends React.Component {
 
 }
 
-export default App;
