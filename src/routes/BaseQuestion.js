@@ -1,30 +1,22 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
-export default class BaseQuestion extends React.Component {
-  static defaultProps = {
-    history: {
-      push: () => {},
-    },
-  }
-  handleNextClick = () => {
-    const {history} = this.props
+class BaseQuestion extends React.Component {
+
+  handleNextClick = (e) => {
+    const { history } = this.props
+    this.props.baseAssign(e)
     history.push('/first')
+    console.log('assigning base flavor')
   }
 
-  handleBaseAssign = (e) => {
-    e.preventDefault()
-    let strength = {
-      strength: e.target.value
-    }
-    console.log(strength) 
-  }
   render() {
     return (
       <div className='question'>
         <h2>What the base flavor would be?</h2>
         <form 
           className='base-form'
-          onSubmit={this.handleBaseAssign}>
+          onSubmit={this.handleNextClick}>
           <ul>
             <li>
               <input
@@ -70,7 +62,7 @@ export default class BaseQuestion extends React.Component {
   
             </li>
           </ul>
-          <button onClick={this.handleNextClick}>NEXT</button>
+          <button type='submit'>NEXT</button>
         </form>
   
         
@@ -79,3 +71,5 @@ export default class BaseQuestion extends React.Component {
   }
   
 }
+
+export default withRouter(BaseQuestion)

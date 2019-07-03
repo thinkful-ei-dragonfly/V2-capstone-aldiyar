@@ -1,20 +1,21 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom'
 
-export default class FirstFlavorQuestion extends React.Component {
+class FirstFlavorQuestion extends React.Component {
 
-  static defaultProps = {
-    history: {
-      push: () => {},
-    },
-  }
-  handleNextClick = () => {
-    const {history} = this.props
+  handleNextClick = (e) => {
+    const { history } = this.props
+    this.props.flavorAssign(e)
     history.push('/second')
+    console.log('assigning first add on')
   }
 
   render() {
     return (
       <div className='question'>
+        <form
+          className='first-form'
+          onSubmit={this.handleNextClick}>
         <h2>What would the first additional flavor be?</h2>
         <ul>
         <li>
@@ -61,10 +62,14 @@ export default class FirstFlavorQuestion extends React.Component {
   
         </li>
         </ul>
-        <button onClick={this.handleNextClick}>NEXT</button>
+        <button type='submit'>NEXT</button>
+        </form>
+        
   
       </div>
     )
   }
 
 }
+
+export default withRouter(FirstFlavorQuestion)

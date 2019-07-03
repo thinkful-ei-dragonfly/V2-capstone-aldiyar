@@ -15,8 +15,8 @@ export default class App extends React.Component {
     this.state = {
       strength: '',
       base: '',
-      flavor_1: '',
-      flavor_2: '',
+      flavor1: '',
+      flavor2: '',
     }
   }
   handleStrengthAssign = (e) => {
@@ -34,10 +34,30 @@ export default class App extends React.Component {
     })
   }
 
-  componentDidMount() {
-    fetch(`'someURL'/flavors`)
-
+  handleFirstAddOnFlavorAssign = (e) => {
+    e.preventDefault();
+    this.setState({
+      flavor1: e.target.radioGroup.value
+    })
   }
+
+  handleSecondAddOnFlavorAssign = (e) => {
+    e.preventDefault();
+    this.setState({
+      flavor2: e.target.radioGroup.value
+    })
+  }
+
+  convertToJSON = () => {
+    let state = this.state
+    let jsonState = JSON.stringify(state)
+    console.log(jsonState)
+  }
+
+  // componentDidMount() {
+  //   fetch(`'someURL'/flavors`)
+
+  // }
   render() {
     console.log(this.state)
     return (
@@ -62,11 +82,18 @@ export default class App extends React.Component {
           />
           <Route
             path={'/first'}
-            component={FirstFlavorQuestion}
+            render={() => {
+              return <FirstFlavorQuestion flavorAssign={this.handleFirstAddOnFlavorAssign} />
+            }}
           />
           <Route
             path={'/second'}
-            component={SecondFlavorQuestion}
+            render={() => {
+              return <SecondFlavorQuestion
+                flavorAssign={this.handleSecondAddOnFlavorAssign}
+                jsonify={this.convertToJSON}
+              />
+            }}
           />
           <Route
             path={'/result'}

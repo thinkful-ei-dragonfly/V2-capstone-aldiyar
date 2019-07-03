@@ -5,10 +5,9 @@ class StrengthQuestion extends React.Component {
 
   handleNextClick = (e) => {
     const {history} = this.props
-    console.log(history)
     this.props.strengthAssign(e)
     history.push('/base')
-    console.log('pushing')
+    console.log('Assigning Strength')
   }
 
   render() {
