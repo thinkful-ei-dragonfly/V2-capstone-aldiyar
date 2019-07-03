@@ -6,8 +6,8 @@ class SecondFlavorQuestion extends React.Component {
   handleNextClick = (e) => {
     const { history } = this.props
     this.props.flavorAssign(e)
-    this.props.jsonify()
-    history.push('/result')
+    // this.props.jsonify()
+    history.push('/doublecheck')
     console.log('assigning second add on')
   }
 
@@ -63,7 +63,7 @@ class SecondFlavorQuestion extends React.Component {
     
           </li>
         </ul>
-        <button type='submit'>GET RESULTS</button>
+        <button type='submit'>FINALIZE</button>
   
         </form>
         

@@ -7,7 +7,8 @@ import FirstFlavorQuestion from '../routes/FirstFlavorQuestion';
 import SecondFlavorQuestion from '../routes/SecondFlavorQuestion';
 import ResultPage from '../routes/ResultPage';
 import NotFoundPage from '../routes/NotFoundPage';
-import Welcome from '../routes/Welcome'
+import Welcome from '../routes/Welcome';
+import DoubleCheck from '../routes/DoubleCheck';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ export default class App extends React.Component {
       flavor2: '',
     }
   }
+
   handleStrengthAssign = (e) => {
     e.preventDefault();
     this.setState({
@@ -48,11 +50,11 @@ export default class App extends React.Component {
     })
   }
 
-  convertToJSON = () => {
-    let state = this.state
-    let jsonState = JSON.stringify(state)
-    console.log(jsonState)
-  }
+  // convertToJSON = () => {
+  //   let state = this.state
+  //   let jsonState = JSON.stringify(state)
+  //   console.log(jsonState)
+  // }
 
   // componentDidMount() {
   //   fetch(`'someURL'/flavors`)
@@ -92,6 +94,14 @@ export default class App extends React.Component {
               return <SecondFlavorQuestion
                 flavorAssign={this.handleSecondAddOnFlavorAssign}
                 jsonify={this.convertToJSON}
+              />
+            }}
+          />
+          <Route 
+            path={'/doublecheck'}
+            render={() => {
+              return <DoubleCheck
+                state = {this.state}
               />
             }}
           />
