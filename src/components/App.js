@@ -1,4 +1,5 @@
 import React from 'react';
+import config from '../config';
 import {Route, Switch} from 'react-router-dom';
 import '../App.css';
 import StrengthQuestion from '../routes/StrengthQuestion';
@@ -7,8 +8,8 @@ import FirstFlavorQuestion from '../routes/FirstFlavorQuestion';
 import SecondFlavorQuestion from '../routes/SecondFlavorQuestion';
 import ResultPage from '../routes/ResultPage';
 import NotFoundPage from '../routes/NotFoundPage';
-import Welcome from '../routes/Welcome';
-import DoubleCheck from '../routes/DoubleCheck';
+import Welcome from '../routes/Welcome'
+import DoubleCheck from '../routes/DoubleCheck'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -18,9 +19,12 @@ export default class App extends React.Component {
       base: '',
       flavor1: '',
       flavor2: '',
+      returnedFlavors: [],
+      baseFlavor: {},
+      firstFlavor: {},
+      secondFlavor: {},
     }
   }
-
   handleStrengthAssign = (e) => {
     e.preventDefault();
     this.setState({
@@ -50,21 +54,64 @@ export default class App extends React.Component {
     })
   }
 
-  // convertToJSON = () => {
-  //   let state = this.state
-  //   let jsonState = JSON.stringify(state)
-  //   console.log(jsonState)
-  // }
+  handleGetFlavors = () => {
+    fetch(`${config.API_ENDPOINT}/flavors/${this.state.strength}`)
+      .then(res => 
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+      )
+      .then(flavors => {
+        this.setState({
+          returnedFlavors: flavors
+        })
+      })
+      .then(this.state.base => {
+        this.handlePopulateBase(this.state.base)
+      })
+      .then(this.handlePopulateFirstFlavor)
+      .then(this.handlePopulateSecondFlavor)
+  }
 
-  // componentDidMount() {
-  //   fetch(`'someURL'/flavors`)
+  handlePopulateBase = (profile) => {
+    let baseFlavors = this.state.returnedFlavors.filter(flavor => 
+      flavor.flavor_profile === profile
+    )
+    this.setState({
+      baseFlavor: baseFlavors[Math.random(Math.floor()*baseFlavors.length)]
+    })
+    console.log(baseFlavors)
+  }
 
-  // }
+  handlePopulateFirstFlavor = () => {
+    let firstFlavors = this.state.returnedFlavors.filter(flavor =>
+      flavor.flavor_profile === this.state.flavor1
+    )
+    this.setState({
+      firstFlavor: firstFlavors[Math.random(Math.floor()*firstFlavors.length)]
+    })
+  }
+
+  handlePopulateSecondFlavor = () => {
+    let secondFlavors = this.state.returnedFlavors.filter(flavor => 
+      flavor.flavor_profile === this.state.flavor2
+    )
+    this.setState({
+      secondFlavor: secondFlavors[Math.random(Math.floor()*secondFlavors.length)]
+    })
+  }
+
+
+ 
+
+
+
+
   render() {
     console.log(this.state)
     return (
       <div className="App">
-        <h1>Vkuss</h1>
+        <h1>VkusS</h1>
         <Switch>
           <Route
             exact path={'/'}
@@ -93,18 +140,19 @@ export default class App extends React.Component {
             render={() => {
               return <SecondFlavorQuestion
                 flavorAssign={this.handleSecondAddOnFlavorAssign}
-                jsonify={this.convertToJSON}
               />
             }}
           />
-          <Route 
+          <Route
             path={'/doublecheck'}
             render={() => {
               return <DoubleCheck
-                state = {this.state}
+                state={this.state}
+                populateReturned={this.handleGetFlavors}
               />
+
             }}
-          />
+            />
           <Route
             path={'/result'}
             component={ResultPage}

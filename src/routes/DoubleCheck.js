@@ -1,6 +1,6 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
-import config from '../config';
+
 
 
 class DoubleCheck extends React.Component {
@@ -11,14 +11,16 @@ class DoubleCheck extends React.Component {
     console.log('taking to start')
   }
 
-  generateFlavor = () => {
-    fetch(`${config.API_ENDPOINT}/flavors`)
-      .then(res => 
-        (!res.ok)
-          ? res.json().then(e => Promise.reject(e))
-          : res.json()
-        )
-    }
+  takeToNext = () => {
+    const { history } = this.props
+    history.push('/result')
+    console.log('taking to result')
+  }
+  
+  takeToResults = () => {
+    this.props.populateReturned();
+    this.takeToNext()
+  }
   
 
   render() {
@@ -35,8 +37,8 @@ class DoubleCheck extends React.Component {
           <h3>Are you happy with your selection?</h3>
         </div>
         <div>
-          <button onClick={this.generateFlavor}>GET RESULTS</button>
-          <button onClick={this.takeToStart}>CHOOSE AGAIN</button>
+          <button onClick={this.takeToResults}>YES, GET RESULTS</button>
+          <button onClick={this.takeToStart}>NO, LET ME CHOOSE AGAIN</button>
         </div>
         
       </div>
