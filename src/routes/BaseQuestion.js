@@ -13,7 +13,7 @@ class BaseQuestion extends React.Component {
   render() {
     return (
       <div className='question'>
-        <h2>What the base flavor would be?</h2>
+        <h3>What the base flavor would be?</h3>
         <form 
           className='base-form'
           onSubmit={this.handleNextClick}>
@@ -62,7 +62,7 @@ class BaseQuestion extends React.Component {
   
             </li>
           </ul>
-          <button type='submit'>NEXT</button>
+          <button className="next-button" type='submit'>NEXT</button>
         </form>
   
         

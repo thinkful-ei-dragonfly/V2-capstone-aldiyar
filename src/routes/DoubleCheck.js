@@ -1,4 +1,5 @@
 import React from 'react'
+import './styles/doublecheck.css';
 import {withRouter} from 'react-router-dom'
 
 
@@ -26,19 +27,17 @@ class DoubleCheck extends React.Component {
   render() {
     return (
       <div className='doubleCheck'>
-        <div>
-          <h2>You selected:</h2>
+        <div className="doubleCheck-info">
+          <h3>You selected:</h3>
           <p>{this.props.state.strength} as the strength level</p>
           <p>{this.props.state.base} as the base flavor profile</p>
           <p>{this.props.state.flavor1} as your first add on flavor</p>
           <p>{this.props.state.flavor2} as your second add on flavor</p>
         </div>
-        <div>
+        <div className="doubleCheck-buttons">
           <h3>Are you happy with your selection?</h3>
-        </div>
-        <div>
-          <button onClick={this.takeToResults}>YES, GET RESULTS</button>
-          <button onClick={this.takeToStart}>NO, LET ME CHOOSE AGAIN</button>
+          <button className="next-button" id="yes" onClick={this.takeToResults}>YES, GET RESULTS</button>
+          <button className="next-button" id="no" onClick={this.takeToStart}>NO, LET ME CHOOSE AGAIN</button>
         </div>
         
       </div>

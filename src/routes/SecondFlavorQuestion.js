@@ -14,7 +14,7 @@ class SecondFlavorQuestion extends React.Component {
   render() {
     return (
       <div className='question'>
-        <h2>What would the second additional flavor be?</h2>
+        <h3>What would the second additional flavor be?</h3>
         <form
           className='form'
           onSubmit={this.handleNextClick}>
@@ -63,7 +63,9 @@ class SecondFlavorQuestion extends React.Component {
     
           </li>
         </ul>
-        <button type='submit'>FINALIZE</button>
+          <button
+            className="next-button"
+            type='submit'>FINALIZE</button>
   
         </form>
         

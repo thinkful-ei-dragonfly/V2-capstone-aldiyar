@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles/question.css';
 import {withRouter} from 'react-router-dom';
 
 class StrengthQuestion extends React.Component {
@@ -13,7 +14,7 @@ class StrengthQuestion extends React.Component {
   render() {
     return(
       <div className='question'>
-        <h2>How strong would you like your hookah to be?</h2>
+        <h3>How strong would you like your hookah to be?</h3>
         <form onSubmit={this.handleNextClick}>
           <ul>
             <li>
@@ -50,7 +51,7 @@ class StrengthQuestion extends React.Component {
   
             </li>
           </ul>
-          <button type='submit'>NEXT</button>
+          <button className="next-button" type='submit'>NEXT</button>
         </form>
   
   

@@ -1,0 +1,8 @@
+.result-page {
+  background: #000000;
+  color: #ffffff;
+}
+
+.result > p {
+  text-transform: uppercase;
+}

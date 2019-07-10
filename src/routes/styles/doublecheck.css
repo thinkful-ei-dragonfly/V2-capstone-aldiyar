@@ -1,0 +1,36 @@
+.doubleCheck {
+  background: #000000;
+  color: #ffffff;
+}
+
+.doubleCheck-info > h3 {
+  color: #e1d816;
+}
+
+.doubleCheck-info > p {
+  text-transform: uppercase;
+}
+
+.doubleCheck-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.doubleCheck-buttons > h3 {
+  color: #e1d816;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+#yes {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  width: 100%;
+}
+
+#no {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  width: 100%;
+}

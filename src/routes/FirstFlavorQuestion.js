@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles/question.css'
 import { withRouter } from 'react-router-dom'
 
 class FirstFlavorQuestion extends React.Component {
@@ -13,10 +14,10 @@ class FirstFlavorQuestion extends React.Component {
   render() {
     return (
       <div className='question'>
+        <h3>What would the first additional flavor be?</h3>
         <form
           className='first-form'
           onSubmit={this.handleNextClick}>
-        <h2>What would the first additional flavor be?</h2>
         <ul>
         <li>
           <input
@@ -62,7 +63,9 @@ class FirstFlavorQuestion extends React.Component {
   
         </li>
         </ul>
-        <button type='submit'>NEXT</button>
+          <button
+            className="next-button"
+            type='submit'>NEXT</button>
         </form>
         
   

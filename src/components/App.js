@@ -11,6 +11,7 @@ import NotFoundPage from '../routes/NotFoundPage';
 import Welcome from '../routes/Welcome'
 import DoubleCheck from '../routes/DoubleCheck'
 
+
 export default class App extends React.Component {
   constructor(props) {
     super(props)
@@ -63,104 +64,92 @@ export default class App extends React.Component {
       )
       .then(flavors => {
         this.setState({
-          returnedFlavors: flavors
+          returnedFlavors: flavors,
+        })
+        let baseFlavors = this.state.returnedFlavors.filter(flavor => 
+          flavor.flavor_profile === this.state.base
+        )
+        let firstFlavors = this.state.returnedFlavors.filter(flavor =>
+          flavor.flavor_profile === this.state.flavor1
+        )
+        let secondFlavors = this.state.returnedFlavors.filter(flavor => 
+          flavor.flavor_profile === this.state.flavor2
+        )
+        this.setState({
+          baseFlavor: baseFlavors[Math.floor(Math.random() * baseFlavors.length)],
+          firstFlavor: firstFlavors[Math.floor(Math.random() * firstFlavors.length)],
+          secondFlavor: secondFlavors[Math.floor(Math.random()*secondFlavors.length)]
         })
       })
-      .then(this.state.base => {
-        this.handlePopulateBase(this.state.base)
-      })
-      .then(this.handlePopulateFirstFlavor)
-      .then(this.handlePopulateSecondFlavor)
   }
-
-  handlePopulateBase = (profile) => {
-    let baseFlavors = this.state.returnedFlavors.filter(flavor => 
-      flavor.flavor_profile === profile
-    )
-    this.setState({
-      baseFlavor: baseFlavors[Math.random(Math.floor()*baseFlavors.length)]
-    })
-    console.log(baseFlavors)
-  }
-
-  handlePopulateFirstFlavor = () => {
-    let firstFlavors = this.state.returnedFlavors.filter(flavor =>
-      flavor.flavor_profile === this.state.flavor1
-    )
-    this.setState({
-      firstFlavor: firstFlavors[Math.random(Math.floor()*firstFlavors.length)]
-    })
-  }
-
-  handlePopulateSecondFlavor = () => {
-    let secondFlavors = this.state.returnedFlavors.filter(flavor => 
-      flavor.flavor_profile === this.state.flavor2
-    )
-    this.setState({
-      secondFlavor: secondFlavors[Math.random(Math.floor()*secondFlavors.length)]
-    })
-  }
-
-
- 
-
-
-
 
   render() {
     console.log(this.state)
     return (
       <div className="App">
-        <h1>VkusS</h1>
-        <Switch>
-          <Route
-            exact path={'/'}
-            component={Welcome}
-          />
-          <Route
-            path={'/strength'}
-            render = { () => {
-              return <StrengthQuestion strengthAssign={this.handleStrengthAssign} />
-            }}
-          />
-          <Route 
-            path={'/base'}
-            render = { () => {
-              return <BaseQuestion baseAssign={this.handleBaseFlavorAssign} />
-            }}
-          />
-          <Route
-            path={'/first'}
-            render={() => {
-              return <FirstFlavorQuestion flavorAssign={this.handleFirstAddOnFlavorAssign} />
-            }}
-          />
-          <Route
-            path={'/second'}
-            render={() => {
-              return <SecondFlavorQuestion
-                flavorAssign={this.handleSecondAddOnFlavorAssign}
-              />
-            }}
-          />
-          <Route
-            path={'/doublecheck'}
-            render={() => {
-              return <DoubleCheck
-                state={this.state}
-                populateReturned={this.handleGetFlavors}
-              />
+        <header className='header' role='banner'>
+          <h1>VkusS</h1>
+        </header>
+        <nav>
 
-            }}
+        </nav>
+        <main>
+          <Switch>
+            <Route
+              exact path={'/'}
+              component={Welcome}
             />
-          <Route
-            path={'/result'}
-            component={ResultPage}
-          />
-          <Route
-            component={NotFoundPage}
-          />
-        </Switch>
+            <Route
+              path={'/strength'}
+              render = { () => {
+                return <StrengthQuestion strengthAssign={this.handleStrengthAssign} />
+              }}
+            />
+            <Route 
+              path={'/base'}
+              render = { () => {
+                return <BaseQuestion baseAssign={this.handleBaseFlavorAssign} />
+              }}
+            />
+            <Route
+              path={'/first'}
+              render={() => {
+                return <FirstFlavorQuestion flavorAssign={this.handleFirstAddOnFlavorAssign} />
+              }}
+            />
+            <Route
+              path={'/second'}
+              render={() => {
+                return <SecondFlavorQuestion
+                  flavorAssign={this.handleSecondAddOnFlavorAssign}
+                />
+              }}
+            />
+            <Route
+              path={'/doublecheck'}
+              render={() => {
+                return <DoubleCheck
+                  state={this.state}
+                  populateReturned={this.handleGetFlavors}
+                />
+              }}
+              />
+            <Route
+              path={'/result'}
+              render={() => {
+                return <ResultPage
+                  state={this.state}
+                />
+              }}
+            />
+            <Route
+              component={NotFoundPage}
+            />
+          </Switch>
+        </main> 
+        <footer role='contentinfo'>
+
+        </footer>
         
       </div>
     );
