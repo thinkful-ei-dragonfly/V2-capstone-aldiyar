@@ -1,6 +1,6 @@
 import React from 'react'
 import './styles/doublecheck.css';
-import {withRouter} from 'react-router-dom'
+
 
 
 
@@ -9,13 +9,11 @@ class DoubleCheck extends React.Component {
   takeToStart = () => {
     const { history } = this.props
     history.push('/strength')
-    console.log('taking to start')
   }
 
   takeToNext = () => {
     const { history } = this.props
     history.push('/result')
-    console.log('taking to result')
   }
   
   takeToResults = () => {
@@ -46,4 +44,4 @@ class DoubleCheck extends React.Component {
   }
 }
 
-export default withRouter(DoubleCheck)
+export default DoubleCheck

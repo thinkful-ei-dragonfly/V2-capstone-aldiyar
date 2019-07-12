@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/question.css';
-import {withRouter} from 'react-router-dom';
+
 
 class StrengthQuestion extends React.Component {
 
@@ -8,7 +8,6 @@ class StrengthQuestion extends React.Component {
     const {history} = this.props
     this.props.strengthAssign(e)
     history.push('/base')
-    console.log('Assigning Strength')
   }
 
   render() {
@@ -62,4 +61,4 @@ class StrengthQuestion extends React.Component {
 
 }
 
-export default withRouter(StrengthQuestion);
+export default StrengthQuestion;

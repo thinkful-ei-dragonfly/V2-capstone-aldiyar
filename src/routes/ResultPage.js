@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/result.css'
-import { withRouter } from 'react-router-dom' 
+
 
 class ResultPage extends React.Component {
   handleHome = () => {
@@ -38,4 +38,4 @@ class ResultPage extends React.Component {
  
 }
 
-export default withRouter(ResultPage);
+export default ResultPage;

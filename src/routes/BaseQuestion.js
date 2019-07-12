@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+
 
 class BaseQuestion extends React.Component {
 
@@ -7,7 +7,6 @@ class BaseQuestion extends React.Component {
     const { history } = this.props
     this.props.baseAssign(e)
     history.push('/first')
-    console.log('assigning base flavor')
   }
 
   render() {
@@ -72,4 +71,4 @@ class BaseQuestion extends React.Component {
   
 }
 
-export default withRouter(BaseQuestion)
+export default BaseQuestion

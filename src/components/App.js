@@ -1,7 +1,7 @@
 import React from 'react';
 import config from '../config';
-import {Route, Switch} from 'react-router-dom';
-import '../App.css';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import '../routes/styles/App.css';
 import StrengthQuestion from '../routes/StrengthQuestion';
 import BaseQuestion from '../routes/BaseQuestion';
 import FirstFlavorQuestion from '../routes/FirstFlavorQuestion';
@@ -16,10 +16,10 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      strength: '',
-      base: '',
-      flavor1: '',
-      flavor2: '',
+      strength: 'not selected',
+      base: 'not selected',
+      flavor1: 'not selected',
+      flavor2: 'not selected',
       returnedFlavors: [],
       baseFlavor: {},
       firstFlavor: {},
@@ -84,16 +84,15 @@ export default class App extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="App">
+        <nav>
         <header className='header' role='banner'>
           <h1>VkusS</h1>
         </header>
-        <nav>
-
         </nav>
         <main>
+          <BrowserRouter>
           <Switch>
             <Route
               exact path={'/'}
@@ -101,34 +100,36 @@ export default class App extends React.Component {
             />
             <Route
               path={'/strength'}
-              render = { () => {
-                return <StrengthQuestion strengthAssign={this.handleStrengthAssign} />
+              render = { (props) => {
+                return <StrengthQuestion {...props} strengthAssign={this.handleStrengthAssign} />
               }}
             />
             <Route 
               path={'/base'}
-              render = { () => {
-                return <BaseQuestion baseAssign={this.handleBaseFlavorAssign} />
+              render = { (props) => {
+                return <BaseQuestion {...props} baseAssign={this.handleBaseFlavorAssign} />
               }}
             />
             <Route
               path={'/first'}
-              render={() => {
-                return <FirstFlavorQuestion flavorAssign={this.handleFirstAddOnFlavorAssign} />
+              render={(props) => {
+                return <FirstFlavorQuestion {...props} flavorAssign={this.handleFirstAddOnFlavorAssign} />
               }}
             />
             <Route
               path={'/second'}
-              render={() => {
+              render={(props) => {
                 return <SecondFlavorQuestion
+                  {...props}
                   flavorAssign={this.handleSecondAddOnFlavorAssign}
                 />
               }}
             />
             <Route
               path={'/doublecheck'}
-              render={() => {
+              render={(props) => {
                 return <DoubleCheck
+                  {...props}
                   state={this.state}
                   populateReturned={this.handleGetFlavors}
                 />
@@ -136,8 +137,9 @@ export default class App extends React.Component {
               />
             <Route
               path={'/result'}
-              render={() => {
+              render={(props) => {
                 return <ResultPage
+                  {...props}
                   state={this.state}
                 />
               }}
@@ -145,7 +147,8 @@ export default class App extends React.Component {
             <Route
               component={NotFoundPage}
             />
-          </Switch>
+            </Switch>
+          </BrowserRouter>
         </main> 
         <footer role='contentinfo'>
 

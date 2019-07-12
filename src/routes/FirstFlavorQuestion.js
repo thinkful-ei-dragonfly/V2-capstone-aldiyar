@@ -1,6 +1,5 @@
 import React from 'react';
 import './styles/question.css'
-import { withRouter } from 'react-router-dom'
 
 class FirstFlavorQuestion extends React.Component {
 
@@ -8,7 +7,6 @@ class FirstFlavorQuestion extends React.Component {
     const { history } = this.props
     this.props.flavorAssign(e)
     history.push('/second')
-    console.log('assigning first add on')
   }
 
   render() {
@@ -75,4 +73,4 @@ class FirstFlavorQuestion extends React.Component {
 
 }
 
-export default withRouter(FirstFlavorQuestion)
+export default FirstFlavorQuestion

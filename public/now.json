@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "alias": "aldibatyrbekov-vkuss-app",
+  "name": "vkuss-app",
+  "routes": [
+      {
+        "src": "^/static/(.*)",
+        "dest": "/static/$1"
+      },
+      {
+        "src": ".*",
+        "dest": "/index.html"
+      }
+  ]
+}
