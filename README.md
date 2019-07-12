@@ -1,3 +1,8 @@
+## This is a simple hookah flavor generator application. We ask you 4 questions and you receive endless posibilities of flavor mixes!
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
