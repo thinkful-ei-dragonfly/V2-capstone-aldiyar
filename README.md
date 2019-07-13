@@ -1,7 +1,20 @@
+# VKUSS APP
+
+https://aldibatyrbekov-vkuss-app.now.sh/
+
+
+
 ## This is a simple hookah flavor generator application. We ask you 4 questions and you receive endless posibilities of flavor mixes!
 
+## We ask 4 crusial questions in generating the decision.
+ ## 1. What is the strength they like
+ ## 2. What is the base flavor profile
+ ## 3. What is the first additional flavor
+ ## 4. What is the second additional flavor
 
+## Based on these questions we are able to generate a flavor that would fit customers liking.
 
+## React, CSS3, HTML5 are used for the front end of this application. 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
