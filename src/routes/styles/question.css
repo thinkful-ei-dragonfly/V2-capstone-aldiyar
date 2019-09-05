@@ -9,6 +9,10 @@
 
 .question > h3 {
   color: #e1d816;
+  line-height: 168%;
+  width: 80%;
+  margin-left:10%;
+  margin-right:10%;
 
 }
 
@@ -19,7 +23,6 @@ ul {
 li {
   text-align: center;
   font-size: 24px;
-
 }
 
 .next-button {
@@ -33,5 +36,11 @@ li {
   font-size: 24px;
   border: 3px solid #e1d816;
   margin-bottom: 5vh;
+  border-radius: 10px;
+}
+
+.next-button:hover {
+  background: #e1d816;
+  transition: 0.3s;
 }
 

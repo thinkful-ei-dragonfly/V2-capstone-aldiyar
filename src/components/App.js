@@ -24,6 +24,7 @@ export default class App extends React.Component {
       baseFlavor: {},
       firstFlavor: {},
       secondFlavor: {},
+      loading:true,
     }
   }
   handleStrengthAssign = (e) => {
@@ -31,7 +32,6 @@ export default class App extends React.Component {
     this.setState({
       strength: e.target.radioGroup.value
     })
-    
   }
 
   handleBaseFlavorAssign = (e) => {
@@ -56,7 +56,8 @@ export default class App extends React.Component {
   }
 
   handleGetFlavors = () => {
-    fetch(`${config.API_ENDPOINT}/flavors/${this.state.strength}`)
+    this.setState({loading:true}, () => {
+      fetch(`${config.API_ENDPOINT}/flavors/${this.state.strength}`)
       .then(res => 
         (!res.ok)
           ? res.json().then(e => Promise.reject(e))
@@ -78,9 +79,12 @@ export default class App extends React.Component {
         this.setState({
           baseFlavor: baseFlavors[Math.floor(Math.random() * baseFlavors.length)],
           firstFlavor: firstFlavors[Math.floor(Math.random() * firstFlavors.length)],
-          secondFlavor: secondFlavors[Math.floor(Math.random()*secondFlavors.length)]
+          secondFlavor: secondFlavors[Math.floor(Math.random()*secondFlavors.length)],
+          loading: false
         })
       })
+    })
+
   }
 
   render() {

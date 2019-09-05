@@ -17,14 +17,14 @@ class StrengthQuestion extends React.Component {
         <form onSubmit={this.handleNextClick}>
           <ul>
             <li>
+            <label>
               <input
               type='radio'
               className='radioButton'
               name='radioGroup'
               value='strong'/>
-              <label>
-                Strong
-              </label>
+              Strong
+            </label>
   
             </li>
             <li>

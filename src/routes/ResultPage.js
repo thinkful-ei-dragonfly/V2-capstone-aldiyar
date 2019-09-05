@@ -1,5 +1,7 @@
 import React from 'react';
 import './styles/result.css'
+import ClipLoader from 'react-spinners/ClipLoader';
+import {css} from '@emotion/core';
 
 
 class ResultPage extends React.Component {
@@ -7,12 +9,31 @@ class ResultPage extends React.Component {
     const {history} = this.props
     history.push('/')
   }
-  render() {
+
+  renderLoading() {
+    const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+`;
     let baseFlavorRes = this.props.state.baseFlavor;
     let firstFlavorRes = this.props.state.firstFlavor;
     let secondFlavorRes = this.props.state.secondFlavor;
-    return (
-      <div className='result-page'>
+    if (this.props.state.loading) {
+      return (
+        <div className='result-page'>
+          <ClipLoader
+            css={override}
+            sizeUnit={"px"}
+            size={150}
+            color={'#123abc'}
+            loading={this.props.state.loading}
+          />
+        </div>
+      )
+    } else {
+      return (
+        <div className='result-page'>
         <div className='result'>
           <h3>Our recommendation is:</h3>
           <h2>{baseFlavorRes.flavor} from {baseFlavorRes.brand} mixed with</h2>
@@ -32,7 +53,13 @@ class ResultPage extends React.Component {
         <button
           className="next-button"
           onClick={this.handleHome}>Home</button>
-      </div>
+        </div>
+      )
+    }
+  }
+  render() {
+    return (
+      this.renderLoading()
     )
   }
  
